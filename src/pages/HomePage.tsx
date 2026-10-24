@@ -1,0 +1,410 @@
+import React from 'react';
+import { ArrowRight, Play, Heart, BookOpen, Sparkles, ShieldCheck, Sun, Users, Instagram, Facebook } from 'lucide-react';
+import { FoundationData } from '../data/foundationContent';
+
+interface HomePageProps {
+  data: FoundationData;
+  onNavigate: (page: string) => void;
+  onOpenVideo: (url: string, title: string) => void;
+  onSelectProjectForDonation: (projectId: string) => void;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({
+  data,
+  onNavigate,
+  onOpenVideo,
+  onSelectProjectForDonation,
+}) => {
+  const featuredProject = data.projects[0];
+
+  return (
+    <div className="space-y-20 lg:space-y-28">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden pt-8 pb-16 lg:py-20 border-b border-stone-200/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+            {/* Left Column: Typography & Intent */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-amber-900 font-semibold">
+                <Sun className="w-3.5 h-3.5 text-amber-700" />
+                <span>Mysore Parampara</span>
+                <span aria-hidden="true">·</span>
+                <span>Advaita Vedanta</span>
+                <span aria-hidden="true">·</span>
+                <span>Seva</span>
+              </div>
+
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-stone-900 font-medium tracking-tight leading-[1.12] text-balance">
+                {data.home.heroTitle}
+              </h1>
+
+              <p className="text-stone-700 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
+                {data.home.heroSubtitle}
+              </p>
+
+              {/* Action Buttons */}
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <button
+                  onClick={() => onNavigate('about')}
+                  className="flex items-center gap-2 px-6 py-3.5 bg-stone-900 hover:bg-amber-950 text-stone-50 font-medium text-sm rounded-md transition-all shadow-sm cursor-pointer whitespace-nowrap shrink-0"
+                >
+                  <span>Explore Lineage & Shala</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+
+                <button
+                  onClick={() => onNavigate('donations')}
+                  className="flex items-center gap-2 px-6 py-3.5 bg-amber-900 hover:bg-amber-950 text-white font-medium text-sm rounded-md transition-all shadow-sm cursor-pointer whitespace-nowrap shrink-0"
+                >
+                  <Heart className="w-4 h-4 text-amber-300 fill-amber-300" />
+                  <span>Support Our Seva</span>
+                </button>
+
+                {data.home.heroVideoUrl && (
+                  <button
+                    onClick={() => onOpenVideo(data.home.heroVideoUrl, 'AYS Yoga Foundation - Morning Shala Practice & Seva')}
+                    className="flex items-center gap-2 px-4 py-3 text-stone-700 hover:text-amber-950 font-medium text-sm transition-colors cursor-pointer whitespace-nowrap shrink-0"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-900">
+                      <Play className="w-3.5 h-3.5 fill-amber-900 ml-0.5" />
+                    </div>
+                    <span>Watch Shala Video</span>
+                  </button>
+                )}
+              </div>
+
+              {/* Trust & Lineage Metadata strip */}
+              <div className="pt-6 border-t border-stone-200/90 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-stone-600">
+                <span className="font-medium text-stone-900">Preserved in Gokulam, Mysuru</span>
+                <span aria-hidden="true">·</span>
+                <span>Unbroken Parampara</span>
+                <span aria-hidden="true">·</span>
+                <span>100% Non-Profit Seva</span>
+              </div>
+            </div>
+
+            {/* Right Column: Serene Visual Presentation */}
+            <div className="lg:col-span-5 relative">
+              <div className="relative rounded-lg overflow-hidden shadow-xl border border-stone-300/80 aspect-[4/3] lg:aspect-[16/11] bg-stone-200">
+                <img
+                  src={data.home.heroImage}
+                  alt="Yoga practice at traditional sunrise pavilion"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4 text-stone-100">
+                  <p className="font-serif italic text-sm text-stone-200">
+                    &ldquo;{data.home.quoteText}&rdquo;
+                  </p>
+                  <p className="text-xs uppercase tracking-wider text-amber-300 font-medium mt-1">
+                    — {data.home.quoteAuthor}, {data.home.quoteSource}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Editorial Overview Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-3 mb-10">
+          <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
+            Our Foundation & Mission
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-medium">
+            {data.home.overviewTitle}
+          </h2>
+          <div className="w-16 h-0.5 bg-amber-800 mx-auto mt-4" />
+        </div>
+
+        <div className="space-y-6 text-stone-700 text-base sm:text-lg leading-relaxed">
+          <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:text-amber-900 first-letter:float-left first-letter:mr-3 first-letter:mt-1">
+            {data.home.overviewParagraph1}
+          </p>
+          <p>
+            {data.home.overviewParagraph2}
+          </p>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-stone-200 flex flex-wrap items-center justify-between gap-4">
+          <div className="text-sm text-stone-600">
+            <span className="font-medium text-stone-900">Interested in studying or visiting?</span> Daily Mysore classes & Vedic chanting available.
+          </div>
+          <button
+            onClick={() => onNavigate('contact')}
+            className="text-xs uppercase tracking-widest font-semibold text-amber-900 hover:text-amber-950 flex items-center gap-1.5 cursor-pointer"
+          >
+            <span>View Shala Schedule & Guidelines</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </section>
+
+      {/* 6 Core Pillars of the Foundation */}
+      <section className="bg-[#F4EFE6] py-16 lg:py-20 border-y border-stone-300/80">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
+              The Living Pillars
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl text-stone-900 font-medium mt-1">
+              What the Foundation Does
+            </h2>
+            <p className="text-stone-600 text-sm mt-2">
+              Harmonizing the internal discipline of classical yoga with active humanitarian service.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                num: "01",
+                title: "Traditional Mysore Ashtanga",
+                desc: "Preserving the uncompromised Vinyasa Krama system, breath synchronization, bandhas, and drishti as passed down by Sri K. Pattabhi Jois.",
+                page: "about"
+              },
+              {
+                num: "02",
+                title: "Advaita Vedanta Study",
+                desc: "Systematic inquiry into the Upanishads, Bhagavad Gita, and Brahma Sutras to realize the unchanging nature of the Self.",
+                page: "about"
+              },
+              {
+                num: "03",
+                title: "Rural School Yoga & Meals",
+                desc: "Free morning asana classes and nutritious breakfasts for over 1,450 underprivileged students in remote village primary schools.",
+                page: "projects"
+              },
+              {
+                num: "04",
+                title: "Vedic Chanting & Manuscripts",
+                desc: "Digitizing ancient palm-leaf scrolls and teaching sacred Sanskrit recitation to ensure the living oral tradition endures.",
+                page: "resources"
+              },
+              {
+                num: "05",
+                title: "Elder Healthcare Clinics",
+                desc: "Regular free health camps providing gentle chair yoga, Ayurvedic joint care, and vital health monitoring for rural seniors.",
+                page: "projects"
+              },
+              {
+                num: "06",
+                title: "Global Sangha & Scholarships",
+                desc: "Welcoming international practitioners to Mysore while providing full study scholarships to underprivileged Indian students.",
+                page: "donations"
+              }
+            ].map((pillar) => (
+              <div
+                key={pillar.num}
+                className="p-6 bg-white/80 rounded-lg border border-stone-200 hover:border-amber-700/40 transition-all space-y-3 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-mono font-medium text-amber-800">{pillar.num}</span>
+                  <h3 className="font-serif text-xl text-stone-900 font-semibold mt-1">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-stone-600 text-sm leading-relaxed mt-2">
+                    {pillar.desc}
+                  </p>
+                </div>
+                <div className="pt-4 border-t border-stone-100">
+                  <button
+                    onClick={() => onNavigate(pillar.page)}
+                    className="text-xs font-medium text-amber-900 hover:text-amber-950 flex items-center gap-1 cursor-pointer"
+                  >
+                    <span>Learn more</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Seva Project Spotlight */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#FCFAF7] border border-stone-300 rounded-xl overflow-hidden shadow-sm">
+          <div className="grid grid-cols-1 lg:grid-cols-12">
+            <div className="lg:col-span-6 relative aspect-[4/3] lg:aspect-auto">
+              <img
+                src={featuredProject.image}
+                alt={featuredProject.title}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute top-4 left-4 bg-stone-900/90 text-stone-100 text-xs px-3 py-1 rounded backdrop-blur-sm font-medium">
+                Featured Seva Initiative
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 p-8 lg:p-12 flex flex-col justify-between space-y-6">
+              <div>
+                <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
+                  {featuredProject.category} · {featuredProject.location}
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl text-stone-900 font-medium mt-1">
+                  {featuredProject.title}
+                </h3>
+                <p className="text-stone-600 text-sm leading-relaxed mt-3">
+                  {featuredProject.longDescription}
+                </p>
+
+                {/* Progress bar and metrics */}
+                <div className="mt-6 pt-6 border-t border-stone-200 space-y-3">
+                  <div className="flex items-center justify-between text-xs text-stone-600">
+                    <span className="font-medium text-stone-900">
+                      Raised: ${featuredProject.raisedAmount.toLocaleString()}
+                    </span>
+                    <span>Goal: ${featuredProject.goalAmount.toLocaleString()}</span>
+                  </div>
+                  <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                    <div
+                      className="bg-amber-800 h-full rounded-full transition-all duration-700"
+                      style={{
+                        width: `${Math.min(100, Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100))}%`
+                      }}
+                    />
+                  </div>
+                  <div className="text-xs text-stone-500 flex items-center justify-between">
+                    <span>Beneficiaries: {featuredProject.beneficiariesCount}</span>
+                    <span className="text-amber-900 font-medium">
+                      {Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100)}% Funded
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-4 pt-4">
+                <button
+                  onClick={() => onSelectProjectForDonation(featuredProject.id)}
+                  className="px-5 py-2.5 bg-amber-900 hover:bg-amber-950 text-white text-xs font-semibold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <Heart className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
+                  <span>Donate to This Project</span>
+                </button>
+                <button
+                  onClick={() => onNavigate('projects')}
+                  className="text-xs font-medium text-stone-700 hover:text-stone-950 flex items-center gap-1.5 cursor-pointer"
+                >
+                  <span>View All Projects</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Ashtanga Resources Teaser Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="p-8 sm:p-12 bg-stone-900 text-stone-100 rounded-xl relative overflow-hidden">
+          <div className="max-w-2xl space-y-4 relative z-10">
+            <span className="text-xs uppercase tracking-widest text-amber-400 font-semibold">
+              Sacred Learning
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-medium text-stone-100">
+              Ashtanga Mantras & The 8 Limbs of Patanjali
+            </h2>
+            <p className="text-stone-300 text-sm leading-relaxed">
+              Explore the Sanskrit text, Roman transliteration, and spiritual translations of the Ashtanga Opening & Closing Mantras, accompanied by our acoustic singing bowl and chant audio.
+            </p>
+            <div className="pt-2">
+              <button
+                onClick={() => onNavigate('resources')}
+                className="px-5 py-2.5 bg-amber-700 hover:bg-amber-600 text-white text-xs font-semibold uppercase tracking-wider rounded-md transition-colors cursor-pointer inline-flex items-center gap-2"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Open Ashtanga Resources</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Quote Carousel / Highlight */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+        <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
+          Voices of the Sangha
+        </span>
+        <blockquote className="font-serif text-2xl sm:text-3xl text-stone-800 italic leading-relaxed max-w-3xl mx-auto">
+          &ldquo;{data.testimonials[0].quote}&rdquo;
+        </blockquote>
+        <div className="text-sm">
+          <p className="font-semibold text-stone-900">{data.testimonials[0].author}</p>
+          <p className="text-xs text-stone-500">{data.testimonials[0].role} · {data.testimonials[0].location}</p>
+        </div>
+        <div className="pt-2">
+          <button
+            onClick={() => onNavigate('testimonials')}
+            className="text-xs font-semibold uppercase tracking-wider text-amber-900 hover:text-amber-950 inline-flex items-center gap-1 cursor-pointer"
+          >
+            <span>Read All Practitioner Testimonials</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      </section>
+
+      {/* Instagram & Social Media Community Stream */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+          <div>
+            <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
+              Live Shala Stream
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl text-stone-900 font-medium mt-1">
+              Follow Our Daily Mysore Life
+            </h2>
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href={data.general.instagramUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-medium rounded transition-colors"
+            >
+              <Instagram className="w-3.5 h-3.5 text-pink-700" />
+              <span>@aysyogafoundation</span>
+            </a>
+            <a
+              href={data.general.facebookUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-medium rounded transition-colors"
+            >
+              <Facebook className="w-3.5 h-3.5 text-blue-700" />
+              <span>Facebook Community</span>
+            </a>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {data.galleryInstagram.map((item) => (
+            <a
+              key={item.id}
+              href={item.postUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="group relative aspect-square rounded-lg overflow-hidden bg-stone-200 border border-stone-200 shadow-sm block"
+            >
+              <img
+                src={item.imageUrl}
+                alt={item.caption}
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-stone-950/70 opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-between text-white text-xs">
+                <Instagram className="w-4 h-4 text-white self-end" />
+                <p className="line-clamp-3 text-stone-200 font-light text-xs">
+                  {item.caption}
+                </p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
