@@ -35,6 +35,8 @@ export interface FoundationData {
     facebookUrl: string;
     youtubeUrl: string;
     taxExemptionNotice: string;
+    section80GReg?: string;
+    panNumber?: string;
     formspreeEndpoint?: string;
   };
   home: {
@@ -107,7 +109,19 @@ export interface FoundationData {
       accountNumber: string;
       ifscSwiftCode: string;
       upiId: string;
+      qrCodeImage?: string;
     };
+  };
+  bankDetails?: {
+    accountName: string;
+    bankName: string;
+    accountNumber: string;
+    ifscCode: string;
+    upiId: string;
+    section80GReg?: string;
+    panNumber?: string;
+    qrCodeImage?: string;
+    donationFormspreeEndpoint?: string;
   };
   ashtangaResources: {
     title: string;
@@ -167,7 +181,9 @@ export const initialFoundationData: FoundationData = {
     instagramUrl: "https://www.instagram.com/aysyogafoundation",
     facebookUrl: "https://www.facebook.com/aysyogafoundation",
     youtubeUrl: "https://www.youtube.com/@aysyogafoundation",
-    taxExemptionNotice: "Registered non-profit charitable trust. Donations eligible for tax deduction under Section 80G and International 501(c)(3) equivalency.",
+    taxExemptionNotice: "Registered non-profit charitable trust. Donations eligible for tax deduction under Section 80G (Reg: AALTA9453AF20261) | AYS Foundation PAN: AALTA9453A.",
+    section80GReg: "AALTA9453AF20261",
+    panNumber: "AALTA9453A",
     formspreeEndpoint: "https://formspree.io/f/mnppnnee",
   },
   home: {
@@ -332,7 +348,7 @@ export const initialFoundationData: FoundationData = {
   ],
   donations: {
     headline: "Support Our Seva & Heritage Preservation",
-    subheadline: "Every contribution directly funds school meals, rural yoga education, manuscript conservation, and free community clinics. We practice 100% financial transparency.",
+    subheadline: "Every contribution directly funds rural yoga education, free community yoga and meditation camps . We practice 100% financial transparency.",
     impactBreakdown: [
       {
         percentage: 72,
@@ -350,14 +366,26 @@ export const initialFoundationData: FoundationData = {
         description: "Auditing, legal compliance, water harvesting maintenance, and facility care."
       }
     ],
-    presetAmounts: [25, 50, 108, 250, 500, 1008],
+    presetAmounts: [500, 1000, 2500, 5000, 10000],
     bankDetails: {
-      accountName: "AYS YOGA CHARITABLE TRUST",
-      bankName: "State Bank of India (Mysuru Main Branch)",
-      accountNumber: "389201948291",
-      ifscSwiftCode: "SBIN0000843 / SWIFT: SBININBBXXX",
-      upiId: "aysyogafoundation@sbi"
+      accountName: "Ashtanga Yoga Samarpana Charitable Trust",
+      bankName: "HDFC Bank (Pavagada Branch)",
+      accountNumber: "50200117951130",
+      ifscSwiftCode: "HDFC0008217",
+      upiId: "9742734499@hdfc",
+      qrCodeImage: "/assets/aistudio/image_dbfd4481.png"
     }
+  },
+  bankDetails: {
+    accountName: "Ashtanga Yoga Samarpana Charitable Trust",
+    bankName: "HDFC Bank (Pavagada Branch)",
+    accountNumber: "50200117951130",
+    ifscCode: "HDFC0008217",
+    upiId: "9742734499@hdfc",
+    section80GReg: "AALTA9453AF20261",
+    panNumber: "AALTA9453A",
+    qrCodeImage: "/assets/aistudio/image_dbfd4481.png",
+    donationFormspreeEndpoint: "https://formspree.io/f/mnppnjqe"
   },
   ashtangaResources: {
     title: "Ashtanga Yoga & Vedanta Sacred Resources",

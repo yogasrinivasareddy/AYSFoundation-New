@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Save, RotateCcw, Copy, Check, Upload, Image as ImageIcon, Video, Globe, BookOpen } from 'lucide-react';
+import { X, Save, RotateCcw, Copy, Check, Upload, Image as ImageIcon, Video, Globe, BookOpen, Landmark } from 'lucide-react';
 import { FoundationData } from '../data/foundationContent';
 
 interface ContentEditorModalProps {
@@ -18,7 +18,7 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
   onReset,
 }) => {
   const [formData, setFormData] = useState<FoundationData>(JSON.parse(JSON.stringify(data)));
-  const [activeTab, setActiveTab] = useState<'general' | 'home' | 'about' | 'projects' | 'resources' | 'social'>('general');
+  const [activeTab, setActiveTab] = useState<'general' | 'home' | 'about' | 'projects' | 'resources' | 'social' | 'donations'>('general');
   const [copied, setCopied] = useState(false);
 
   if (!isOpen) return null;
@@ -77,6 +77,7 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
             { id: 'projects', label: 'Seva Projects', icon: Upload },
             { id: 'resources', label: 'Resources & Mantras', icon: BookOpen },
             { id: 'social', label: 'Social & Video Links', icon: Video },
+            { id: 'donations', label: 'Donations & Banking', icon: Landmark },
           ].map((tab) => {
             const Icon = tab.icon;
             return (
@@ -482,6 +483,127 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
                   onChange={(e) => handleTextChange(['home', 'heroVideoUrl'], e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white"
                   placeholder="https://www.youtube-nocookie.com/embed/..."
+                />
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'donations' && (
+            <div className="space-y-4">
+              <div className="p-3 bg-amber-50 border border-amber-200 rounded-md text-amber-900 text-xs leading-relaxed">
+                Configure your official bank beneficiary details, account numbers, IFSC codes, UPI handles, QR code image paths, and Formspree endpoints for recording contributions.
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                  Beneficiary Name (Account Holder)
+                </label>
+                <input
+                  type="text"
+                  value={formData.bankDetails?.accountName || ''}
+                  onChange={(e) => handleTextChange(['bankDetails', 'accountName'], e.target.value)}
+                  className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900"
+                  placeholder="Ashtanga Yoga Samarpana Charitable Trust"
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    Bank & Branch Name
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.bankName || ''}
+                    onChange={(e) => handleTextChange(['bankDetails', 'bankName'], e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900"
+                    placeholder="HDFC Bank (Pavagada Branch)"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    Account Number
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.accountNumber || ''}
+                    onChange={(e) => handleTextChange(['bankDetails', 'accountNumber'], e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono"
+                    placeholder="50200117951130"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    IFSC Code
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.ifscCode || ''}
+                    onChange={(e) => handleTextChange(['bankDetails', 'ifscCode'], e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono uppercase"
+                    placeholder="HDFC0008217"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    UPI ID (Virtual Payment Address)
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.upiId || ''}
+                    onChange={(e) => handleTextChange(['bankDetails', 'upiId'], e.target.value)}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono"
+                    placeholder="9742734499@hdfc"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    Section 80G Registration No
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.section80GReg || formData.general.section80GReg || ''}
+                    onChange={(e) => {
+                      handleTextChange(['bankDetails', 'section80GReg'], e.target.value);
+                      handleTextChange(['general', 'section80GReg'], e.target.value);
+                    }}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono uppercase"
+                    placeholder="AALTA9453AF20261"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                    AYS Foundation PAN
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.bankDetails?.panNumber || formData.general.panNumber || ''}
+                    onChange={(e) => {
+                      handleTextChange(['bankDetails', 'panNumber'], e.target.value);
+                      handleTextChange(['general', 'panNumber'], e.target.value);
+                    }}
+                    className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono uppercase"
+                    placeholder="AALTA9453A"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                  Donations Formspree Endpoint URL
+                </label>
+                <input
+                  type="text"
+                  value={formData.bankDetails?.donationFormspreeEndpoint || ''}
+                  onChange={(e) => handleTextChange(['bankDetails', 'donationFormspreeEndpoint'], e.target.value)}
+                  className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 font-mono text-xs"
+                  placeholder="https://formspree.io/f/mnppnjqe"
                 />
               </div>
             </div>
