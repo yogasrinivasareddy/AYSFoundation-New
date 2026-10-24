@@ -209,11 +209,11 @@ export const initialFoundationData: FoundationData = {
   home: {
     heroTitle: "Breath, Lineage, and Compassionate Action",
     heroSubtitle: "A living sanctuary uniting traditional Ashtanga Vinyasa Yoga, timeless Vedanta inquiry, and humanitarian Seva to elevate consciousness and serve humanity.",
-    heroImage: heroImg,
+    heroImage: "/assets/aistudio/srinivas-home-main_2dd862ec.jpeg",
     heroVideoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ", // Replace with your Shala/Foundation YouTube video ID
-    overviewTitle: "Preserving the Living Flame of Parampara",
-    overviewParagraph1: "AYS Yoga Foundation was established with an unswerving devotion to authentic yoga as a sacred spiritual science. Rooted in the traditional teaching methodology of Mysore, we honor the eight-limbed path laid down in Maharishi Patanjali's Yoga Sutras and the philosophical illumination of Advaita Vedanta.",
-    overviewParagraph2: "Beyond the physical mat, we believe the true fruition of yoga is Seva—selfless action. Through educational grants, rural health camps, free yoga for underprivileged school children, and the preservation of sacred manuscripts, the foundation channels the transformative energy of yoga into uplifting society.",
+    overviewTitle: "AYS Yoga Foundation – Mission & Vision 🌿",
+    overviewParagraph1: "Preserving Ashtanga Yoga Tradition • Transforming Lives • Serving Humanity",
+    overviewParagraph2: "To preserve, practise, and spread the authentic tradition of Ashtanga Yoga and share the transformative wisdom of yoga, pranayama, meditation, and conscious living with people from all walks of life.",
     quoteText: "Yoga is an internal practice. The rest is just a circus. Practice, practice, and all is coming.",
     quoteAuthor: "Sri K. Pattabhi Jois",
     quoteSource: "Yoga Mala (1962)",
