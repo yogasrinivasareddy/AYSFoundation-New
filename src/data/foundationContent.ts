@@ -69,6 +69,26 @@ export interface FoundationData {
       yearsOfPractice: string;
       avatar: string;
     }>;
+    guruProfile?: {
+      name: string;
+      role: string;
+      experience: string;
+      bioParagraph1: string;
+      bioParagraph2: string;
+      bioParagraph3: string;
+      journeyTitle: string;
+      journeyDescription: string;
+      lineageInspirations: Array<{
+        name: string;
+        tradition: string;
+      }>;
+      images: {
+        centreImage: string;
+        centreCaption: string;
+        lineageImage: string;
+        lineageCaption: string;
+      };
+    };
   };
   projects: Array<{
     id: string;
@@ -228,27 +248,43 @@ export const initialFoundationData: FoundationData = {
     ],
     teachers: [
       {
-        name: "Acharya Vinay Kumar",
-        role: "Founding Director & Lead Ashtanga Teacher",
-        bio: "Dedicated to the Mysore tradition for over 26 years. Authorized teacher combining deep Sanskrit scholarship with uncompromising Ashtanga Vinyasa discipline and compassionate individual adjustments.",
-        yearsOfPractice: "26+ years",
-        avatar: "https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        name: "Vidushi Meenakshi Sundaram",
-        role: "Head of Vedanta Studies & Vedic Chanting",
-        bio: "Trained under traditional Gurukula lineage in Mysore and Varanasi. Master of Upanishadic recitation, Patanjali Yoga Sutra chanting, and Advaita philosophy.",
-        yearsOfPractice: "20+ years",
-        avatar: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=400&q=80"
-      },
-      {
-        name: "Dr. Anand Ranganathan",
-        role: "Director of Community Seva & Ayurvedic Health",
-        bio: "Ayurvedic physician and lifelong practitioner coordinating the foundation's free rural medical camps, elder wellness circles, and child nutrition programs.",
-        yearsOfPractice: "18+ years",
-        avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80"
+        name: "Srinivasa Reddy",
+        role: "Yoga Guru & Dedicated Practitioner",
+        bio: "Devoted seven years to dedicated Yoga practice, Pranayama, Meditation, and conscious living, inspired by the unbroken Ashtanga tradition.",
+        yearsOfPractice: "7+ Years Sincere Practice",
+        avatar: "/assets/aistudio/sharath-yoga-centre.jpg_3533f600.jpeg"
       }
-    ]
+    ],
+    guruProfile: {
+      name: "Srinivasa Reddy",
+      role: "Yoga Guru",
+      experience: "Seven Years of Dedicated Practice & Learning",
+      bioParagraph1: "He has devoted seven years to dedicated Yoga practice and learning, with a particular focus on the traditional practices of Ashtanga Yoga, Pranayama, Meditation, and conscious living.",
+      bioParagraph2: "His journey has taken him across different parts of India, including the Himalayas, where he travelled to explore, learn, practice, and deepen his understanding of Yoga, meditation, nature, and the inner journey.",
+      bioParagraph3: "For Srinivasa, Yoga is not merely a practice of physical postures. It is a holistic way of life that develops discipline, clarity, health, awareness, compassion, balance, and self-realisation.",
+      journeyTitle: "Yoga Journey & Spiritual Exploration",
+      journeyDescription: "Srinivasa’s Yoga journey has been shaped by years of sincere practice, study, travel, and direct experience. Over seven years of practice across India and the Himalayan regions, his experience has strengthened his belief that true Yoga is an inward journey—a process of discovering the deeper potential within every human being.",
+      lineageInspirations: [
+        {
+          name: "Tirumalai Krishnamacharya",
+          tradition: "Pranayama tradition"
+        },
+        {
+          name: "K. Pattabhi Jois",
+          tradition: "Ashtanga Yoga tradition"
+        },
+        {
+          name: "Sharath R. Jois",
+          tradition: "Ashtanga Yoga"
+        }
+      ],
+      images: {
+        centreImage: "/assets/aistudio/sharath-yoga-centre.jpg_3533f600.jpeg",
+        centreCaption: "Srinivasa Reddy at Sharath Yoga Centre, Mysuru",
+        lineageImage: "/assets/aistudio/lineage-respect.jpg_ac055bdc.jpeg",
+        lineageCaption: "Direct Transmission & Guru Pranam with Paramaguru Sharath R. Jois"
+      }
+    }
   },
   projects: [
     {
