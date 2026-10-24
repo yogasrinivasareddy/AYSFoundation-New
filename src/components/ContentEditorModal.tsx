@@ -151,13 +151,26 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
 
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
-                  Physical Shala Location / Address (Mysore)
+                  Physical Location / Address (Pavagada Yoga Shala)
                 </label>
                 <input
                   type="text"
                   value={formData.general.location}
                   onChange={(e) => handleTextChange(['general', 'location'], e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 focus:outline-none focus:border-amber-800"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                  Pavagada Google Maps URL
+                </label>
+                <input
+                  type="text"
+                  value={formData.general.mysoreMapsUrl || ''}
+                  onChange={(e) => handleTextChange(['general', 'mysoreMapsUrl'], e.target.value)}
+                  className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 focus:outline-none focus:border-amber-800"
+                  placeholder="https://maps.app.goo.gl/..."
                 />
               </div>
 
@@ -183,7 +196,7 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
                   value={formData.general.bangaloreAddress || ''}
                   onChange={(e) => handleTextChange(['general', 'bangaloreAddress'], e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 focus:outline-none focus:border-amber-800"
-                  placeholder="e.g. #18, 4th Cross, 10th Main Road, Indiranagar, Bengaluru"
+                  placeholder="e.g. 3rd floor, 469, 6th Main Rd, Sadashiva Nagar, Bengaluru"
                 />
               </div>
 
@@ -197,6 +210,19 @@ export const ContentEditorModal: React.FC<ContentEditorModalProps> = ({
                   onChange={(e) => handleTextChange(['general', 'bangaloreMapsUrl'], e.target.value)}
                   className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 focus:outline-none focus:border-amber-800"
                   placeholder="https://www.google.com/maps/search/?api=1&query=..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 mb-1">
+                  Formspree Endpoint (Inquiry Form Dispatch)
+                </label>
+                <input
+                  type="text"
+                  value={formData.general.formspreeEndpoint || 'https://formspree.io/f/mnppnnee'}
+                  onChange={(e) => handleTextChange(['general', 'formspreeEndpoint'], e.target.value)}
+                  className="w-full px-3 py-2 border border-stone-300 rounded-md bg-white text-stone-900 focus:outline-none focus:border-amber-800"
+                  placeholder="https://formspree.io/f/mnppnnee"
                 />
               </div>
             </div>

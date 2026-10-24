@@ -181,15 +181,15 @@ export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
                 <div className="flex items-start gap-2.5">
                   <MapPin className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                   <div>
-                    <span className="text-stone-400 text-xs block font-medium">Mysore Shala:</span>
+                    <span className="text-stone-400 text-xs block font-medium">Pavagada Yoga Shala:</span>
                     <a
-                      href={data.general.mysoreMapsUrl || "https://www.google.com/maps/search/?api=1&query=Gokulam+3rd+Stage+Mysuru"}
+                      href={data.general.mysoreMapsUrl || "https://maps.app.goo.gl/zU76gdr351CCLkZR8"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-amber-300 transition-colors"
-                      title="Open Mysore Shala on Google Maps"
+                      title="Open Pavagada Yoga Shala on Google Maps"
                     >
-                      {data.general.location}
+                      {data.general.location || "47, Hoshahalli, v, Palavalli, Pavagada, Karnataka 572136"}
                     </a>
                   </div>
                 </div>
@@ -199,13 +199,13 @@ export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
                   <div>
                     <span className="text-stone-400 text-xs block font-medium">Bangalore Location:</span>
                     <a
-                      href={data.general.bangaloreMapsUrl || "https://www.google.com/maps/search/?api=1&query=Indiranagar+Bengaluru+Karnataka"}
+                      href={data.general.bangaloreMapsUrl || "https://www.google.com/maps/place/Flex+%26+Flow/@13.0084732,77.5756517,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae17006f8a197b:0xa4626ce12b154ffc!8m2!3d13.008468!4d77.5782266!16s%2Fg%2F11vt6tm40n?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-amber-300 transition-colors underline decoration-amber-600/60"
                       title="Open Bangalore Office on Google Maps"
                     >
-                      {data.general.bangaloreAddress || "#18, 4th Cross, 10th Main Road, Indiranagar, Bengaluru, Karnataka 560038"}
+                      {data.general.bangaloreAddress || "3rd floor, 469, 6th Main Rd, opp. Prinky’s Art Studio, Sadashiva Nagar, Armane Nagar, Bengaluru, Karnataka 560080"}
                     </a>
                   </div>
                 </div>
@@ -218,7 +218,9 @@ export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
               </div>
               <div className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-amber-500 shrink-0" />
-                <span>{data.general.phone} (Mysore Shala Office)</span>
+                <a href="tel:+919742734499" className="hover:text-amber-300 transition-colors">
+                  {data.general.phone || "+91 97427 34499"} (Foundation Office)
+                </a>
               </div>
             </div>
 

@@ -35,6 +35,7 @@ export interface FoundationData {
     facebookUrl: string;
     youtubeUrl: string;
     taxExemptionNotice: string;
+    formspreeEndpoint?: string;
   };
   home: {
     heroTitle: string;
@@ -155,18 +156,19 @@ export const initialFoundationData: FoundationData = {
     subTagline: "Preserving ancient yogic science, community seva initiatives, and classical wisdom for global wellbeing.",
     establishedYear: "2014",
     lineageTradition: "Mysore Ashtanga Yoga (Sri T. Krishnamacharya & Sri K. Pattabhi Jois Parampara)",
-    location: "Gokulam 3rd Stage, Mysuru, Karnataka 570002, India",
-    mysoreMapsUrl: "https://www.google.com/maps/search/?api=1&query=Gokulam+3rd+Stage+Mysuru+Karnataka",
-    bangaloreLocationTitle: "Bangalore Location (Foundation Administrative Office)",
-    bangaloreAddress: "#18, 4th Cross, 10th Main Road, Indiranagar, Bengaluru, Karnataka 560038, India",
-    bangaloreMapsUrl: "https://www.google.com/maps/search/?api=1&query=AYS+Yoga+Foundation+Indiranagar+Bengaluru+Karnataka+560038",
+    location: "47, Hoshahalli, v, Palavalli, Pavagada, Karnataka 572136",
+    mysoreMapsUrl: "https://maps.app.goo.gl/zU76gdr351CCLkZR8",
+    bangaloreLocationTitle: "Bangalore Location (Sadashiva Nagar)",
+    bangaloreAddress: "3rd floor, 469, 6th Main Rd, opp. Prinky’s Art Studio, Sadashiva Nagar, Armane Nagar, Bengaluru, Karnataka 560080",
+    bangaloreMapsUrl: "https://www.google.com/maps/place/Flex+%26+Flow/@13.0084732,77.5756517,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae17006f8a197b:0xa4626ce12b154ffc!8m2!3d13.008468!4d77.5782266!16s%2Fg%2F11vt6tm40n?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     email: "contact@aysyogafoundation.org",
-    phone: "+91 821 241 8920",
-    whatsappNumber: "+91 98450 12345",
+    phone: "+91 97427 34499",
+    whatsappNumber: "+91 97427 34499",
     instagramUrl: "https://www.instagram.com/aysyogafoundation",
     facebookUrl: "https://www.facebook.com/aysyogafoundation",
     youtubeUrl: "https://www.youtube.com/@aysyogafoundation",
     taxExemptionNotice: "Registered non-profit charitable trust. Donations eligible for tax deduction under Section 80G and International 501(c)(3) equivalency.",
+    formspreeEndpoint: "https://formspree.io/f/mnppnnee",
   },
   home: {
     heroTitle: "Breath, Lineage, and Compassionate Action",
