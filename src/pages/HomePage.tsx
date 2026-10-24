@@ -87,14 +87,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-lg overflow-hidden shadow-xl border border-stone-300/80 aspect-[4/3] lg:aspect-[16/11] bg-stone-200">
                 <img
-                  src={data.home.heroImage || '/assets/aistudio/srinivas-home-main_2dd862ec.jpeg'}
-                  alt="Srinivasa Reddy - Yoga Guru in meditation at sunrise temple pavilion"
+                  src={data.home.heroImage || '/assets/aistudio/srinivas-main-namaste_28018e47.jpeg'}
+                  alt="Srinivasa Reddy - Yoga Guru in prayer posture (Anjali Mudra)"
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-[center_20%]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/70 via-stone-950/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/75 via-stone-950/20 to-transparent" />
                 <div className="absolute bottom-4 left-4 right-4 text-stone-100">
-                  <p className="font-serif italic text-sm text-stone-200">
+                  <p className="font-serif italic text-sm text-stone-200 leading-snug">
                     &ldquo;{data.home.quoteText}&rdquo;
                   </p>
                   <p className="text-xs uppercase tracking-wider text-amber-300 font-medium mt-1">
@@ -211,17 +211,17 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </div>
 
-        {/* 7 Key Pillars of Our Mission */}
+        {/* AYS Yoga Foundation – Our Six Key Initiatives 🌿 */}
         <div className="space-y-8 mb-16">
           <div className="max-w-3xl">
             <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
-              Foundational Framework
+              Key Pillars of Mission
             </span>
             <h3 className="font-serif text-3xl sm:text-4xl text-stone-900 font-medium mt-1">
-              Key Pillars of Our Mission
+              AYS Yoga Foundation – Our Six Key Initiatives 🌿
             </h3>
             <p className="text-stone-600 text-sm sm:text-base mt-2">
-              Seven conscious commitments integrating authentic practice, inner awakening, and universal service.
+              Preserving authentic lineage, awakening inner knowledge, and serving humanity through grassroots yogic action.
             </p>
           </div>
 
@@ -229,105 +229,90 @@ export const HomePage: React.FC<HomePageProps> = ({
             {[
               {
                 num: "01",
-                title: "Preserve the Ashtanga Yoga Tradition",
-                desc: "Uphold and share the traditional practice, discipline, and philosophy of Ashtanga Yoga, respecting its authentic lineage and teachings.",
+                title: "Traditional Mysore Ashtanga Yoga",
+                desc: "Preserving the traditional lineage through asana, breath, bandha, drishti, and disciplined practice.",
                 icon: Flame,
                 page: "about",
                 cta: "Explore Lineage"
               },
               {
                 num: "02",
-                title: "Inner Transformation",
-                desc: "Guide individuals towards greater self-awareness, inner stability, peace, and conscious living through yoga, pranayama, and meditation.",
-                icon: Sparkles,
-                page: "resources",
-                cta: "Study Practices"
+                title: "Govu Seva",
+                desc: "Feeding our sacred cows is not just an act of kindness, its service to life.",
+                icon: Heart,
+                page: "projects",
+                cta: "Support Govu Seva"
               },
               {
                 num: "03",
-                title: "Yoga for All",
-                desc: "Make traditional yogic practices accessible to children, youth, adults, rural communities, and people from all walks of life through charitable and community-based programmes.",
+                title: "Rural School Yoga & Nutrition",
+                desc: "Providing free yoga education and nutritious meals to children in rural schools.",
                 icon: Users,
                 page: "projects",
-                cta: "Community Camps"
+                cta: "Rural School Seva"
               },
               {
                 num: "04",
-                title: "Holistic Human Well-being",
-                desc: "Promote physical fitness, mental clarity, emotional balance, healthy habits, and a harmonious lifestyle through consistent yogic practice.",
-                icon: Heart,
-                page: "about",
-                cta: "Daily Practice"
+                title: "Vedic Chanting & Manuscripts",
+                desc: "Preserving sacred chants, Sanskrit knowledge, and ancient manuscripts for future generations.",
+                icon: BookOpen,
+                page: "resources",
+                cta: "Sacred Texts & Chants"
               },
               {
                 num: "05",
-                title: "Spiritual Growth Through Sadhana",
-                desc: "Encourage daily practice, self-discipline, mindfulness, and deeper exploration of human consciousness.",
-                icon: Sun,
-                page: "resources",
-                cta: "Sadhana Path"
+                title: "Elder Healthcare & Well-being",
+                desc: "Supporting rural elders through wellness programmes, gentle yoga, and health awareness.",
+                icon: ShieldCheck,
+                page: "projects",
+                cta: "Elder Care Initiatives"
               },
               {
                 num: "06",
-                title: "Harmony with Nature",
-                desc: "Encourage environmental responsibility, tree planting, sustainable living, and a respectful relationship with the natural world.",
-                icon: Leaf,
-                page: "projects",
-                cta: "Eco & Seva"
-              },
-              {
-                num: "07",
-                title: "Service to Humanity",
-                desc: "Use the wisdom and practices of yoga as a means of social service, community well-being, and human empowerment.",
+                title: "Global Sangha & Scholarships",
+                desc: "Building a global yoga community and supporting learning opportunities for underprivileged students.",
                 icon: Globe,
                 page: "donations",
-                cta: "Support Seva"
+                cta: "Support Scholarships"
               }
-            ].map((pillar, idx) => {
-              const Icon = pillar.icon;
-              const isLast = idx === 6;
+            ].map((initiative) => {
+              const Icon = initiative.icon;
               return (
                 <div
-                  key={pillar.num}
-                  className={`p-6 sm:p-7 rounded-xl border transition-all duration-200 flex flex-col justify-between ${
-                    isLast
-                      ? 'md:col-span-2 lg:col-span-3 bg-gradient-to-br from-amber-50/90 via-[#FAF7F2] to-amber-100/40 border-amber-300/80 shadow-sm'
-                      : 'bg-[#FCFAF7] border-stone-200/90 hover:border-amber-700/40 hover:shadow-sm'
-                  }`}
+                  key={initiative.num}
+                  className="bg-[#FCFAF7] border border-stone-200/90 hover:border-amber-700/50 hover:shadow-md transition-all duration-200 rounded-xl p-6 sm:p-7 flex flex-col justify-between group"
                 >
                   <div className="space-y-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold tracking-widest text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded">
-                        Pillar {pillar.num}
+                      <span className="text-xs font-mono font-bold tracking-widest text-amber-800 bg-amber-100/80 px-2.5 py-0.5 rounded border border-amber-200/60">
+                        Initiative {initiative.num}
                       </span>
-                      <div className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center text-amber-800">
+                      <div className="w-9 h-9 rounded-full bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-amber-900 border border-amber-200/50 transition-colors">
                         <Icon className="w-4 h-4" />
                       </div>
                     </div>
 
                     <div>
-                      <h4 className="font-serif text-xl text-stone-900 font-semibold">
-                        {pillar.title}
+                      <h4 className="font-serif text-xl text-stone-900 font-semibold group-hover:text-amber-950 transition-colors">
+                        {initiative.title}
                       </h4>
-                      <p className="text-stone-600 text-sm leading-relaxed mt-2">
-                        {pillar.desc}
+                      <p className="text-stone-600 text-sm leading-relaxed mt-2.5">
+                        {initiative.desc}
                       </p>
                     </div>
                   </div>
 
-                  <div className="pt-5 mt-4 border-t border-stone-200/70 flex items-center justify-between">
+                  <div className="pt-5 mt-6 border-t border-stone-200/70 flex items-center justify-between">
                     <button
-                      onClick={() => onNavigate(pillar.page)}
-                      className="text-xs font-medium text-amber-900 hover:text-amber-950 flex items-center gap-1.5 cursor-pointer"
+                      onClick={() => onNavigate(initiative.page)}
+                      className="text-xs font-medium text-amber-900 hover:text-amber-950 flex items-center gap-1.5 cursor-pointer transition-colors"
                     >
-                      <span>{pillar.cta}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
+                      <span>{initiative.cta}</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </button>
-                    {isLast && (
-                      <span className="text-xs text-amber-800/80 italic font-serif">
-                        Serving humanity through selfless yogic action
-                      </span>
-                    )}
+                    <span className="text-[11px] font-mono text-stone-400">
+                      AYS {initiative.num}
+                    </span>
                   </div>
                 </div>
               );

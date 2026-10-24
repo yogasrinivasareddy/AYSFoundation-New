@@ -209,7 +209,7 @@ export const initialFoundationData: FoundationData = {
   home: {
     heroTitle: "Breath, Lineage, and Compassionate Action",
     heroSubtitle: "A living sanctuary uniting traditional Ashtanga Vinyasa Yoga, timeless Vedanta inquiry, and humanitarian Seva to elevate consciousness and serve humanity.",
-    heroImage: "/assets/aistudio/srinivas-home-main_2dd862ec.jpeg",
+    heroImage: "/assets/aistudio/srinivas-main-namaste_28018e47.jpeg",
     heroVideoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ", // Replace with your Shala/Foundation YouTube video ID
     overviewTitle: "AYS Yoga Foundation – Mission & Vision 🌿",
     overviewParagraph1: "Preserving Ashtanga Yoga Tradition • Transforming Lives • Serving Humanity",
