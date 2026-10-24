@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, Play, Heart, BookOpen, Sparkles, ShieldCheck, Sun, Users, Leaf, Globe, Flame, Instagram, Facebook } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Play, Heart, BookOpen, Sparkles, ShieldCheck, Sun, Users, Leaf, Globe, Flame, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FoundationData } from '../data/foundationContent';
 
 interface HomePageProps {
@@ -15,7 +15,9 @@ export const HomePage: React.FC<HomePageProps> = ({
   onOpenVideo,
   onSelectProjectForDonation,
 }) => {
+  const [activeTestimonialIdx, setActiveTestimonialIdx] = useState(0);
   const featuredProject = data.projects[0];
+  const currentTestimonial = data.testimonials[activeTestimonialIdx] || data.testimonials[0];
 
   return (
     <div className="space-y-20 lg:space-y-28">
@@ -71,15 +73,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                     <span>Watch Shala Video</span>
                   </button>
                 )}
-              </div>
-
-              {/* Trust & Lineage Metadata strip */}
-              <div className="pt-6 border-t border-stone-200/90 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-stone-600">
-                <span className="font-medium text-stone-900">AYS Yoga Foundation</span>
-                <span aria-hidden="true">·</span>
-                <span>Unbroken Parampara</span>
-                <span aria-hidden="true">·</span>
-                <span>100% Non-Profit Seva</span>
               </div>
             </div>
 
@@ -261,11 +254,11 @@ export const HomePage: React.FC<HomePageProps> = ({
               },
               {
                 num: "05",
-                title: "Elder Healthcare & Well-being",
-                desc: "Supporting rural elders through wellness programmes, gentle yoga, and health awareness.",
-                icon: ShieldCheck,
+                title: "Tree Plantation",
+                desc: "Supporting ecological restoration through the Yoga Vana project by planting native trees, conserving soil and water, and nurturing biodiversity.",
+                icon: Leaf,
                 page: "projects",
-                cta: "Elder Care Initiatives"
+                cta: "Explore Yoga Vana"
               },
               {
                 num: "06",
@@ -386,29 +379,31 @@ export const HomePage: React.FC<HomePageProps> = ({
                   {featuredProject.longDescription}
                 </p>
 
-                {/* Progress bar and metrics */}
-                <div className="mt-6 pt-6 border-t border-stone-200 space-y-3">
-                  <div className="flex items-center justify-between text-xs text-stone-600">
-                    <span className="font-medium text-stone-900">
-                      Raised: ${featuredProject.raisedAmount.toLocaleString()}
-                    </span>
-                    <span>Goal: ${featuredProject.goalAmount.toLocaleString()}</span>
+                {/* Progress bar and metrics (omitted for Project 1 per request) */}
+                {featuredProject.id !== "project-rural-school-yoga" && (
+                  <div className="mt-6 pt-6 border-t border-stone-200 space-y-3">
+                    <div className="flex items-center justify-between text-xs text-stone-600">
+                      <span className="font-medium text-stone-900">
+                        Raised: ${featuredProject.raisedAmount.toLocaleString()}
+                      </span>
+                      <span>Goal: ${featuredProject.goalAmount.toLocaleString()}</span>
+                    </div>
+                    <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
+                      <div
+                        className="bg-amber-800 h-full rounded-full transition-all duration-700"
+                        style={{
+                          width: `${Math.min(100, Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100))}%`
+                        }}
+                      />
+                    </div>
+                    <div className="text-xs text-stone-500 flex items-center justify-between">
+                      <span>Beneficiaries: {featuredProject.beneficiariesCount}</span>
+                      <span className="text-amber-900 font-medium">
+                        {Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100)}% Funded
+                      </span>
+                    </div>
                   </div>
-                  <div className="w-full bg-stone-200 h-2 rounded-full overflow-hidden">
-                    <div
-                      className="bg-amber-800 h-full rounded-full transition-all duration-700"
-                      style={{
-                        width: `${Math.min(100, Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100))}%`
-                      }}
-                    />
-                  </div>
-                  <div className="text-xs text-stone-500 flex items-center justify-between">
-                    <span>Beneficiaries: {featuredProject.beneficiariesCount}</span>
-                    <span className="text-amber-900 font-medium">
-                      {Math.round((featuredProject.raisedAmount / featuredProject.goalAmount) * 100)}% Funded
-                    </span>
-                  </div>
-                </div>
+                )}
               </div>
 
               <div className="flex flex-wrap items-center gap-4 pt-4">
@@ -417,13 +412,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                   className="px-5 py-2.5 bg-amber-900 hover:bg-amber-950 text-white text-xs font-semibold uppercase tracking-wider rounded-md transition-colors cursor-pointer flex items-center gap-2"
                 >
                   <Heart className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
-                  <span>Donate to This Project</span>
+                  <span>Support This Seva</span>
                 </button>
                 <button
                   onClick={() => onNavigate('projects')}
                   className="text-xs font-medium text-stone-700 hover:text-stone-950 flex items-center gap-1.5 cursor-pointer"
                 >
-                  <span>View All Projects</span>
+                  <span>Details</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </button>
               </div>
@@ -463,13 +458,55 @@ export const HomePage: React.FC<HomePageProps> = ({
         <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
           Voices of the Sangha
         </span>
-        <blockquote className="font-serif text-2xl sm:text-3xl text-stone-800 italic leading-relaxed max-w-3xl mx-auto">
-          &ldquo;{data.testimonials[0].quote}&rdquo;
-        </blockquote>
-        <div className="text-sm">
-          <p className="font-semibold text-stone-900">{data.testimonials[0].author}</p>
-          <p className="text-xs text-stone-500">{data.testimonials[0].role} · {data.testimonials[0].location}</p>
+
+        <div className="relative min-h-[120px] flex items-center justify-center px-8 sm:px-12">
+          <blockquote className="font-serif text-2xl sm:text-3xl text-stone-800 italic leading-relaxed max-w-3xl mx-auto">
+            &ldquo;{currentTestimonial.quote}&rdquo;
+          </blockquote>
+
+          {data.testimonials.length > 1 && (
+            <>
+              <button
+                onClick={() => setActiveTestimonialIdx((prev) => (prev === 0 ? data.testimonials.length - 1 : prev - 1))}
+                aria-label="Previous testimonial"
+                className="absolute left-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-stone-200 hover:border-amber-700 bg-white/80 hover:bg-amber-50 text-stone-600 hover:text-amber-900 flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setActiveTestimonialIdx((prev) => (prev === data.testimonials.length - 1 ? 0 : prev + 1))}
+                aria-label="Next testimonial"
+                className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full border border-stone-200 hover:border-amber-700 bg-white/80 hover:bg-amber-50 text-stone-600 hover:text-amber-900 flex items-center justify-center transition-colors cursor-pointer"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </>
+          )}
         </div>
+
+        <div className="text-sm">
+          <p className="font-semibold text-stone-900 text-base">{currentTestimonial.author}</p>
+          <p className="text-xs text-stone-500 mt-0.5">{currentTestimonial.role} · {currentTestimonial.location}</p>
+        </div>
+
+        {/* Carousel indicator dots */}
+        {data.testimonials.length > 1 && (
+          <div className="flex items-center justify-center gap-1.5 pt-1">
+            {data.testimonials.map((t, idx) => (
+              <button
+                key={t.id}
+                onClick={() => setActiveTestimonialIdx(idx)}
+                aria-label={`View reflection by ${t.author}`}
+                className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                  activeTestimonialIdx === idx
+                    ? 'w-6 bg-amber-800'
+                    : 'w-2 bg-stone-300 hover:bg-stone-400'
+                }`}
+              />
+            ))}
+          </div>
+        )}
+
         <div className="pt-2">
           <button
             onClick={() => onNavigate('testimonials')}
@@ -478,65 +515,6 @@ export const HomePage: React.FC<HomePageProps> = ({
             <span>Read All Practitioner Testimonials</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
-        </div>
-      </section>
-
-      {/* Instagram & Social Media Community Stream */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
-          <div>
-            <span className="text-xs uppercase tracking-widest text-amber-800 font-semibold">
-              Live Shala Stream
-            </span>
-            <h2 className="font-serif text-2xl sm:text-3xl text-stone-900 font-medium mt-1">
-              Follow Our Daily Mysore Life
-            </h2>
-          </div>
-          <div className="flex items-center gap-3">
-            <a
-              href={data.general.instagramUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-medium rounded transition-colors"
-            >
-              <Instagram className="w-3.5 h-3.5 text-pink-700" />
-              <span>@aysyogafoundation</span>
-            </a>
-            <a
-              href={data.general.facebookUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-stone-100 hover:bg-stone-200 text-stone-800 text-xs font-medium rounded transition-colors"
-            >
-              <Facebook className="w-3.5 h-3.5 text-blue-700" />
-              <span>Facebook Community</span>
-            </a>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {data.galleryInstagram.map((item) => (
-            <a
-              key={item.id}
-              href={item.postUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="group relative aspect-square rounded-lg overflow-hidden bg-stone-200 border border-stone-200 shadow-sm block"
-            >
-              <img
-                src={item.imageUrl}
-                alt={item.caption}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-stone-950/70 opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-between text-white text-xs">
-                <Instagram className="w-4 h-4 text-white self-end" />
-                <p className="line-clamp-3 text-stone-200 font-light text-xs">
-                  {item.caption}
-                </p>
-              </div>
-            </a>
-          ))}
         </div>
       </section>
     </div>

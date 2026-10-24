@@ -18,7 +18,7 @@ import { ResourcesPage } from './pages/ResourcesPage';
 import { ContactPage } from './pages/ContactPage';
 import { Edit3 } from 'lucide-react';
 
-const LOCAL_STORAGE_KEY = 'ays_yoga_foundation_data_v9';
+const LOCAL_STORAGE_KEY = 'ays_yoga_foundation_data_v27';
 
 export default function App() {
   const [data, setData] = useState<FoundationData>(() => {

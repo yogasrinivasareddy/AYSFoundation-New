@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Instagram, Facebook, Youtube, Mail, MapPin, Phone, Heart, CheckCircle2 } from 'lucide-react';
+import React from 'react';
+import { Instagram, Facebook, Youtube, Mail, MapPin, Phone, Heart } from 'lucide-react';
 import { FoundationData } from '../data/foundationContent';
 
 interface FooterProps {
@@ -8,65 +8,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (newsletterEmail.trim()) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setNewsletterEmail('');
-      }, 3000);
-    }
-  };
-
   return (
     <footer className="bg-[#24211E] text-stone-300 border-t border-stone-800">
-      {/* Top Satsang / Newsletter Ribbon */}
-      <div className="border-b border-stone-800/80">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7">
-              <span className="text-xs uppercase tracking-widest text-amber-400 font-medium">
-                Patanjali Philosophy & Moon Day Satsang
-              </span>
-              <h3 className="font-serif text-2xl lg:text-3xl text-stone-100 mt-1">
-                Receive Sacred Study Notes & Seva Updates
-              </h3>
-              <p className="text-stone-400 text-sm mt-2 max-w-xl">
-                Occasional contemplative reflections on the Yoga Sutras, upcoming new moon / full moon practice schedules, and community outreach reports.
-              </p>
-            </div>
-            <div className="lg:col-span-5">
-              {subscribed ? (
-                <div className="flex items-center gap-2 p-3 bg-stone-800/80 border border-stone-700 rounded-md text-amber-300 text-sm">
-                  <CheckCircle2 className="w-5 h-5 text-amber-400 shrink-0" />
-                  <span>Thank you. You are subscribed to our quiet contemplative circular.</span>
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2">
-                  <input
-                    type="email"
-                    required
-                    value={newsletterEmail}
-                    onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Enter your email address"
-                    className="flex-1 px-4 py-2.5 rounded-md bg-stone-900 border border-stone-700 text-stone-100 placeholder-stone-500 text-sm focus:outline-none focus:border-amber-500"
-                  />
-                  <button
-                    type="submit"
-                    className="px-5 py-2.5 bg-amber-800 hover:bg-amber-700 text-stone-100 text-sm font-medium rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">

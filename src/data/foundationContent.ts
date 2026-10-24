@@ -38,6 +38,7 @@ export interface FoundationData {
     section80GReg?: string;
     panNumber?: string;
     formspreeEndpoint?: string;
+    volunteerFormspreeEndpoint?: string;
   };
   home: {
     heroTitle: string;
@@ -97,6 +98,7 @@ export interface FoundationData {
     description: string;
     longDescription: string;
     image: string;
+    collageImages?: string[];
     videoUrl?: string;
     goalAmount: number;
     raisedAmount: number;
@@ -205,12 +207,13 @@ export const initialFoundationData: FoundationData = {
     section80GReg: "AALTA9453AF20261",
     panNumber: "AALTA9453A",
     formspreeEndpoint: "https://formspree.io/f/mnppnnee",
+    volunteerFormspreeEndpoint: "https://formspree.io/f/maeenrea",
   },
   home: {
     heroTitle: "Breath, Lineage, and Compassionate Action",
     heroSubtitle: "A living sanctuary uniting traditional Ashtanga Vinyasa Yoga, timeless Vedanta inquiry, and humanitarian Seva to elevate consciousness and serve humanity.",
     heroImage: "/assets/aistudio/srinivas-main-namaste_28018e47.jpeg",
-    heroVideoUrl: "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ", // Replace with your Shala/Foundation YouTube video ID
+    heroVideoUrl: "https://youtube.com/shorts/gGebTm5toXw?si=w0IiwVeeYqvlrTPn",
     overviewTitle: "AYS Yoga Foundation – Mission & Vision 🌿",
     overviewParagraph1: "Preserving Ashtanga Yoga Tradition • Transforming Lives • Serving Humanity",
     overviewParagraph2: "To preserve, practise, and spread the authentic tradition of Ashtanga Yoga and share the transformative wisdom of yoga, pranayama, meditation, and conscious living with people from all walks of life.",
@@ -289,70 +292,106 @@ export const initialFoundationData: FoundationData = {
   projects: [
     {
       id: "project-rural-school-yoga",
-      title: "Yoga & Mindful Nutrition for Rural Schools",
-      category: "Education & Child Health",
-      description: "Bringing classical Surya Namaskar, pranayama, and healthy morning nutrition to underprivileged rural primary schools across Karnataka.",
-      longDescription: "Our flagship educational outreach initiative conducts daily morning yoga sessions in 14 rural village schools. Certified teachers teach breathing techniques, posture alignment, and concentration exercises to over 1,450 children, paired with wholesome organic porridge and fruit to support their learning and immunity.",
-      image: projectImg,
+      title: "Bringing Yoga, Pranayama & Meditation to Every Community",
+      category: "Rural & Community Outreach",
+      description: "Bringing practical yogic knowledge to rural schools, colleges, and local communities—making Yoga, Pranayama, and Meditation accessible to all.",
+      longDescription: "AYS Yoga Foundation's Rural & Community Yoga Awareness Project brings practical yogic knowledge to rural schools, colleges, and local communities. Through structured programmes in Yoga, Pranayama, and Meditation, we introduce students, youth, and villagers to daily practices that support physical well-being, concentration, emotional resilience, and conscious living—empowering every individual to live with health, balance, and harmony.",
+      image: "/assets/aistudio/Project1-03_698a71a8.jpeg",
       goalAmount: 18000,
       raisedAmount: 14250,
-      beneficiariesCount: "1,450+ Students",
+      beneficiariesCount: "1,450+ Students & Villagers",
       status: "Active",
-      location: "Chamrajnagar & Mysuru Rural Districts"
+      location: "Rural Schools, Colleges & Communities"
     },
     {
-      id: "project-vedic-manuscript",
-      title: "Vedic Chanting & Palm Leaf Manuscript Preservation",
-      category: "Cultural Heritage",
-      description: "Digitizing ancient palm-leaf treatises on Yoga Chikitsa, pranayama, and Vedanta, while running free youth chanting workshops.",
-      longDescription: "Working with traditional scholars and archivists, we have digitized over 85 rare palm-leaf manuscripts and Sanskrit commentaries. The project also sponsors traditional recitation training so that the acoustic resonance and meter of Vedic chanting remain a living oral art.",
-      image: resourcesImg,
+      id: "project-goshala-seva",
+      title: "Goshala Seva",
+      category: "GoSeva",
+      description: "Supporting the care, feeding, and well-being of sacred cows and young calves through daily nourishment and compassionate seva.",
+      longDescription: "AYS Yoga Foundation believes that compassion, kindness, and service extend to every living being. Through our Goshala Seva Project, we aim to support the care and well-being of cows and other animals by contributing to daily feeding, nourishment, and essential care.",
+      image: "/assets/aistudio/Project2-1_f3c8f376.jpeg",
       goalAmount: 12000,
       raisedAmount: 10400,
-      beneficiariesCount: "85 Manuscripts / 240 Chanting Students",
+      beneficiariesCount: "",
       status: "Active",
-      location: "Heritage Archive, Srirangapatna"
+      location: "Tumkur Rural"
     },
     {
-      id: "project-elders-health",
-      title: "Free Gentle Yoga & Health Camps for Rural Elders",
-      category: "Healthcare & Elders",
-      description: "Bi-weekly community clinics offering therapeutic chair yoga, joint mobility, blood pressure screening, and herbal Ayurvedic oils.",
-      longDescription: "Recognizing that rural elders often lack access to restorative healthcare, our volunteer medical and yoga teams host bi-weekly wellness clinics. Over 800 elderly villagers receive gentle therapeutic movement instruction, joint pain alleviation therapy, and free Ayurvedic consultations.",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
-      goalAmount: 9500,
-      raisedAmount: 9500,
-      beneficiariesCount: "820+ Elders Supported",
-      status: "Completed",
-      location: "Hunsur & Nanjangud Taluks"
+      id: "project-annadanam-seva",
+      title: "Annadanam Seva Project",
+      category: "Annadanam & Seva",
+      description: "Nourishing the body and uplifting the spirit through wholesome sattvic meals during yoga programmes, on Ekadashi, and for rural communities.",
+      longDescription: "AYS Yoga Foundation believes that food, health, and spiritual well-being are essential to a conscious society. Through our Annadanam Seva Project, we provide nutritious vegetarian meals during Yoga, Pranayama, and Meditation programmes, organise charitable food distribution on Ekadashi, and extend food support to rural communities in need.",
+      image: "/assets/aistudio/Project3-04_906c3bfe.jpeg",
+      goalAmount: 15000,
+      raisedAmount: 11200,
+      beneficiariesCount: "",
+      status: "Active",
+      location: "Rural Communities & Shala"
     },
     {
       id: "project-heritage-shala",
-      title: "Eco-Friendly Traditional Shala Restoration & Sanctuary",
+      title: "Eco-Friendly Traditional Shala",
       category: "Ashram & Environment",
-      description: "Restoring our heritage practice shala using eco-limestone, rainwater harvesting, solar illumination, and a medicinal herb garden.",
-      longDescription: "Preserving architectural heritage while adopting zero-carbon ecological practices. The restoration employs local artisans, utilizes breathable terracotta tiles and lime plaster, and sustains a community herbal nursery supplying local Ayurvedic remedies.",
-      image: aboutImg,
+      description: "Preserving architectural heritage through sustainable, nature-friendly practices, local materials, and positive spaces for yoga and conscious living.",
+      longDescription: "AYS Yoga Foundation creates positive, eco-friendly spaces where ancient wisdom, ecological responsibility, and conscious living come together. Our vision embraces the preservation of traditional architectural heritage using breathable natural materials, local artisan craftsmanship, and community herbal nurseries—nurturing body, mind, and spirit in harmony with the Earth.",
+      image: "/assets/aistudio/Project4-02_cd840e83.jpeg",
       goalAmount: 25000,
       raisedAmount: 17800,
-      beneficiariesCount: "Community & Global Sangha",
+      beneficiariesCount: "",
       status: "Active",
-      location: "Heritage Shala Compound"
+      location: "Pavagada, Tumkur District"
+    },
+    {
+      id: "project-gov-corporate-wellness",
+      title: "Government & Corporate Wellness Initiatives",
+      category: "Corporate & Public Sector",
+      description: "Collaborating with government departments, PSUs like KSPDCL and POWERGRID, and corporate organisations to promote mental clarity, stress management, and self-awareness.",
+      longDescription: "AYS Yoga Foundation collaborates with government departments, educational institutions, public sector undertakings, and corporate organisations to promote holistic health, mental well-being, stress management, and self-awareness through traditional Pranayama, Meditation, and Yoga practices.",
+      image: "/assets/aistudio/Project5_960b985b.jpeg",
+      goalAmount: 20000,
+      raisedAmount: 16500,
+      beneficiariesCount: "",
+      status: "Active",
+      location: "Government & Corporate Sectors"
+    },
+    {
+      id: "project-yoga-vana",
+      title: "Yoga Vana Project",
+      category: "Environmental Seva",
+      description: "A 50-acre green forest model in Pavagada uniting native tree planting, ecological restoration, water conservation, and nature-based yoga & meditation.",
+      longDescription: "Yoga Vana is a proposed 50-acre green forest and conscious-living initiative envisioned by AYS Yoga Foundation in Pavagada Taluk, Tumakuru District, Karnataka. The project aims to develop a green forest model that brings together tree planting, ecological restoration, yoga, meditation, environmental awareness, and community participation. Inspired by the interconnectedness of human life and nature, Yoga Vana seeks to encourage a harmonious relationship between people, trees, soil, water, wildlife, and the wider environment.",
+      image: "/assets/aistudio/Project6_d2470d88.jpeg",
+      goalAmount: 35000,
+      raisedAmount: 22000,
+      beneficiariesCount: "50-Acre Forest Model",
+      status: "Active",
+      location: "Pavagada Taluk, Tumakuru District"
     }
   ],
   testimonials: [
     {
       id: "test-1",
-      author: "Elena Rostova",
-      role: "Ashtanga Practitioner & Teacher",
-      location: "Vienna, Austria",
+      author: "Max",
+      role: "Ashtanga Seeker",
+      location: "Germany",
       category: "Practitioner",
       quote: "Practicing at AYS Yoga Foundation transformed not just my asana, but how I breathe through life's trials. The devotion to the traditional Mysore method, without ego or shortcuts, is profoundly rare in today's world.",
       year: "Practicing since 2018",
-      avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80"
+      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
     },
     {
       id: "test-2",
+      author: "Vinay Dev",
+      role: "Ashtanga Practitioner",
+      location: "Mysuru",
+      category: "Practitioner",
+      quote: "The authentic dedication to Ashtanga yoga, daily sadhana, and selfless service creates an atmosphere of genuine spiritual depth. Practicing here connects you deeply with the lineage.",
+      year: "Practicing since 2019",
+      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+    },
+    {
+      id: "test-3",
       author: "Shashidhar Murthy",
       role: "Headmaster, Government Primary School",
       location: "Gundlupet, Karnataka",
@@ -360,16 +399,6 @@ export const initialFoundationData: FoundationData = {
       quote: "Before the foundation started their yoga and nutrition program, our student attendance was low and children struggled with attention. Today, the morning Surya Namaskar and warm meal have brought joyful vitality to our entire school.",
       year: "Partner since 2021",
       avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
-    },
-    {
-      id: "test-3",
-      author: "David Chen",
-      role: "Software Architect & Student",
-      location: "San Francisco, USA",
-      category: "Practitioner",
-      quote: "The integration of Advaita Vedanta philosophy alongside the physical vigor of the Ashtanga Primary Series gave me the mental clarity I desperately needed. It answered the 'why' behind the practice.",
-      year: "Student since 2019",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
     },
     {
       id: "test-4",
