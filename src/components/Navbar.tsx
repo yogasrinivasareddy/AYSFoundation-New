@@ -36,11 +36,21 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Zone 1: Brand Wordmark (Single text element in display face) */}
           <button
             onClick={() => handleNavClick('home')}
-            className="text-left group cursor-pointer focus:outline-none"
+            className="text-left group cursor-pointer focus:outline-none flex items-center gap-3"
           >
-            <span className="font-serif text-2xl lg:text-3xl font-semibold tracking-tight text-stone-900 group-hover:text-amber-900 transition-colors whitespace-nowrap shrink-0 block">
-              {foundationName}
-            </span>
+            <img
+              src="/assets/aistudio/AYS-Logo-transparent.png"
+              alt="AYS Yoga Foundation Emblem"
+              className="w-10 h-10 sm:w-12 sm:h-12 object-contain shrink-0"
+            />
+            <div>
+              <span className="font-serif text-xl sm:text-2xl font-semibold tracking-tight text-stone-900 group-hover:text-amber-900 transition-colors whitespace-nowrap block leading-tight">
+                {foundationName}
+              </span>
+              <span className="text-[10px] sm:text-xs uppercase tracking-widest text-amber-800 font-medium block">
+                By Srinivasa Reddy
+              </span>
+            </div>
           </button>
 
           {/* Zone 2: Clean single-line text navigation links */}

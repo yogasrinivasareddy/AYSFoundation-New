@@ -15,9 +15,21 @@ export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           {/* Column 1: Foundation Wordmark & Philosophy */}
           <div className="lg:col-span-4 space-y-4">
-            <h4 className="font-serif text-2xl text-stone-100 font-medium">
-              {data.general.foundationName}
-            </h4>
+            <div className="flex items-center gap-3">
+              <img
+                src="/assets/aistudio/AYS-Logo-transparent.png"
+                alt="AYS Yoga Foundation Emblem"
+                className="w-12 h-12 object-contain shrink-0 invert brightness-95"
+              />
+              <div>
+                <h4 className="font-serif text-2xl text-stone-100 font-medium leading-tight">
+                  {data.general.foundationName}
+                </h4>
+                <span className="text-xs text-amber-400 font-medium tracking-wider block mt-0.5">
+                  By Srinivasa Reddy
+                </span>
+              </div>
+            </div>
             <p className="text-stone-400 text-sm leading-relaxed">
               {data.general.subTagline}
             </p>
