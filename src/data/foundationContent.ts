@@ -39,6 +39,7 @@ export interface FoundationData {
     panNumber?: string;
     formspreeEndpoint?: string;
     volunteerFormspreeEndpoint?: string;
+    testimonialsFormspreeEndpoint?: string;
   };
   home: {
     heroTitle: string;
@@ -192,22 +193,23 @@ export const initialFoundationData: FoundationData = {
     subTagline: "Preserving ancient yogic science, community seva initiatives, and classical wisdom for global wellbeing.",
     establishedYear: "2014",
     lineageTradition: "Mysore Ashtanga Yoga (Sri T. Krishnamacharya & Sri K. Pattabhi Jois Parampara)",
-    location: "47, Hoshahalli, v, Palavalli, Pavagada, Karnataka 572136",
-    mysoreMapsUrl: "https://maps.app.goo.gl/zU76gdr351CCLkZR8",
+    location: "#47, Hosahalli (village), Palavalli (post), Pavagada (taluk), Tumkur (district), Karnataka, India - 572136",
+    mysoreMapsUrl: "https://www.google.com/maps/place/AYS+YOGA+Foundation/@14.1998058,77.3033227,18.5z/data=!4m6!3m5!1s0x3bb11b847fa87669:0x610da421437ee744!8m2!3d14.1997846!4d77.3038581!16s%2Fg%2F11z3lm782z?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
     bangaloreLocationTitle: "Bangalore Location (Sadashiva Nagar)",
     bangaloreAddress: "3rd floor, 469, 6th Main Rd, opp. Prinky’s Art Studio, Sadashiva Nagar, Armane Nagar, Bengaluru, Karnataka 560080",
     bangaloreMapsUrl: "https://www.google.com/maps/place/Flex+%26+Flow/@13.0084732,77.5756517,17z/data=!3m1!4b1!4m6!3m5!1s0x3bae17006f8a197b:0xa4626ce12b154ffc!8m2!3d13.008468!4d77.5782266!16s%2Fg%2F11vt6tm40n?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D",
-    email: "contact@aysyogafoundation.org",
+    email: "srinivasareddy@aysyogafoundation.org",
     phone: "+91 97427 34499",
     whatsappNumber: "+91 97427 34499",
-    instagramUrl: "https://www.instagram.com/aysyogafoundation",
-    facebookUrl: "https://www.facebook.com/aysyogafoundation",
-    youtubeUrl: "https://www.youtube.com/@aysyogafoundation",
+    instagramUrl: "https://www.instagram.com/seenareddy24?rpxt=MXd0cG4zbzhsbzNqaw%3D%3D&utm_source=qr",
+    facebookUrl: "https://www.facebook.com/seenareddy24/",
+    youtubeUrl: "https://www.youtube.com/@Seenareddy24/",
     taxExemptionNotice: "Registered non-profit charitable trust. Donations eligible for tax deduction under Section 80G (Reg: AALTA9453AF20261) | AYS Foundation PAN: AALTA9453A.",
     section80GReg: "AALTA9453AF20261",
     panNumber: "AALTA9453A",
     formspreeEndpoint: "https://formspree.io/f/mnppnnee",
     volunteerFormspreeEndpoint: "https://formspree.io/f/maeenrea",
+    testimonialsFormspreeEndpoint: "https://formspree.io/f/xljjgyyd",
   },
   home: {
     heroTitle: "Breath, Lineage, and Compassionate Action",
@@ -376,9 +378,9 @@ export const initialFoundationData: FoundationData = {
       role: "Ashtanga Seeker",
       location: "Germany",
       category: "Practitioner",
-      quote: "Practicing at AYS Yoga Foundation transformed not just my asana, but how I breathe through life's trials. The devotion to the traditional Mysore method, without ego or shortcuts, is profoundly rare in today's world.",
-      year: "Practicing since 2018",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
+      quote: "I had a private lesson with Sri Nivas. He is very authentic and gives good explanations and demonstration of yogic practices. Some exercises made me suffer a little bit growth begins when expanding the limits of our comfort so l consider this a good thing. With him as instructor I feel motivated to expand my physical limits and overcome weariness. Thank you so much 🙏 Hari Om 🙏",
+      year: "Traveller and seeker",
+      avatar: "/assets/aistudio/Mak_539c2709.jpeg"
     },
     {
       id: "test-2",
@@ -386,29 +388,39 @@ export const initialFoundationData: FoundationData = {
       role: "Ashtanga Practitioner",
       location: "Mysuru",
       category: "Practitioner",
-      quote: "The authentic dedication to Ashtanga yoga, daily sadhana, and selfless service creates an atmosphere of genuine spiritual depth. Practicing here connects you deeply with the lineage.",
+      quote: "Srinivas dedicated his time to get blessings of Astanga, He teaches well and also understand each and everyone body conditions before getting into any asanas, wonderful place to learn Astanga (Mysore Style)!",
       year: "Practicing since 2019",
-      avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=200&q=80"
+      avatar: "/assets/aistudio/Vinay_d69573e9.png"
     },
     {
       id: "test-3",
-      author: "Shashidhar Murthy",
-      role: "Headmaster, Government Primary School",
-      location: "Gundlupet, Karnataka",
-      category: "Seva Outreach",
-      quote: "Before the foundation started their yoga and nutrition program, our student attendance was low and children struggled with attention. Today, the morning Surya Namaskar and warm meal have brought joyful vitality to our entire school.",
-      year: "Partner since 2021",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80"
+      author: "Arun Bhoopasamudra",
+      role: "Lawyer & Practitioner",
+      location: "Bengaluru, Karnataka",
+      category: "Practitioner",
+      quote: "Mr. Sreenivas is primarily a dedicated sadhak. He takes special care to ensure that all of his students are performing the asanas in the right way and would assist them in getting to the right position very diligently. The practice of Yoga helped me enormously with gaining an elevated sense of energy, focus and the ability to work for long hours without the slightest of fatigue. I think anybody who would want health, well being and efficiency in managing their energy should practice Yoga.!",
+      year: "Lawyer",
+      avatar: "/assets/aistudio/Arun_89bdd311.png"
     },
     {
       id: "test-4",
-      author: "Priya Chandrashekar",
-      role: "Yoga Sadhaka & Chanting Student",
+      author: "Preeti Sunderajan",
+      role: "CEO & Ashtanga Practitioner",
       location: "Bengaluru, India",
-      category: "Teacher Training",
-      quote: "Learning the Patanjali Yoga Sutras in their authentic Sanskrit meter under Vidushi Meenakshi opened my heart. AYS Foundation is an oasis of true spiritual dignity and sincerity.",
-      year: "Student since 2022",
-      avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80"
+      category: "Practitioner",
+      quote: "I have done yoga before but I must say I simply love Srinivas’s classes. He is extremely dedicated and teaches us the pure form of Ashtanga yoga. It has brought a lot of changes in me. The professionalism and dedication is commendable.",
+      year: "CEO",
+      avatar: "/assets/aistudio/Preethi_4d02e008.png"
+    },
+    {
+      id: "test-5",
+      author: "Dhruv Nagarkatti",
+      role: "CEO & Ashtanga Practitioner",
+      location: "Bengaluru, India",
+      category: "Practitioner",
+      quote: "Started yoga with Sreenivas a few months ago. He’s really pushed me to practice better and harder so much so that multiple niggling pains and aches I suffered from have now drastically reduced. He’s a true yoga practitioner with utmost dedication to this form. Very few teachers can gauge the pulse of the class and push you just the right amount to make progress - Srinivas is one of them.",
+      year: "CEO",
+      avatar: "/assets/aistudio/Dhruva_e85ecd71.png"
     }
   ],
   donations: {

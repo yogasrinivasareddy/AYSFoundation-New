@@ -126,13 +126,13 @@ export const Footer: React.FC<FooterProps> = ({ data, onNavigate }) => {
                   <div>
                     <span className="text-stone-400 text-xs block font-medium">Pavagada Yoga Shala:</span>
                     <a
-                      href={data.general.mysoreMapsUrl || "https://maps.app.goo.gl/zU76gdr351CCLkZR8"}
+                      href={data.general.mysoreMapsUrl || "https://www.google.com/maps/place/AYS+YOGA+Foundation/@14.1998058,77.3033227,18.5z/data=!4m6!3m5!1s0x3bb11b847fa87669:0x610da421437ee744!8m2!3d14.1997846!4d77.3038581!16s%2Fg%2F11z3lm782z?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="hover:text-amber-300 transition-colors"
                       title="Open Pavagada Yoga Shala on Google Maps"
                     >
-                      {data.general.location || "47, Hoshahalli, v, Palavalli, Pavagada, Karnataka 572136"}
+                      {data.general.location || "#47, Hosahalli (village), Palavalli (post), Pavagada (taluk), Tumkur (district), Karnataka, India - 572136"}
                     </a>
                   </div>
                 </div>

@@ -8,48 +8,75 @@ interface TestimonialsPageProps {
 
 export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
   const [activeCategory, setActiveCategory] = useState<'All' | 'Practitioner' | 'Seva Outreach' | 'Teacher Training'>('All');
-  const [testimonialsList, setTestimonialsList] = useState(data.testimonials);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionSuccess, setSubmissionSuccess] = useState(false);
 
   const [newTestimonial, setNewTestimonial] = useState({
     author: '',
+    email: '',
+    phone: '',
     role: '',
     location: '',
     category: 'Practitioner' as const,
     quote: '',
   });
 
-  const filteredTestimonials = testimonialsList.filter((item) => {
+  // Render purely from vetted foundation data without auto-adding unreviewed submissions
+  const filteredTestimonials = data.testimonials.filter((item) => {
     if (activeCategory === 'All') return true;
     return item.category === activeCategory;
   });
 
-  const handleAddTestimonial = (e: React.FormEvent) => {
+  const handleSubmitTestimonial = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (newTestimonial.author && newTestimonial.quote) {
-      const created = {
-        id: `custom-${Date.now()}`,
-        author: newTestimonial.author,
-        role: newTestimonial.role || 'Practitioner',
-        location: newTestimonial.location || 'India',
-        category: newTestimonial.category,
-        quote: newTestimonial.quote,
-        year: 'Recently Submitted',
-      };
-      setTestimonialsList([created, ...testimonialsList]);
+    if (!newTestimonial.author.trim() || !newTestimonial.quote.trim()) return;
+
+    setIsSubmitting(true);
+    const endpoint = data.general.testimonialsFormspreeEndpoint || 'https://formspree.io/f/xljjgyyd';
+
+    try {
+      await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: newTestimonial.author,
+          email: newTestimonial.email || 'not-provided@example.com',
+          phone: newTestimonial.phone || 'N/A',
+          role: newTestimonial.role || 'Practitioner',
+          location: newTestimonial.location || 'N/A',
+          category: newTestimonial.category,
+          experience: newTestimonial.quote,
+          subject: `New AYS Sangha Experience Shared by: ${newTestimonial.author}`,
+          timestamp: new Date().toLocaleString('en-IN', {
+            dateStyle: 'medium',
+            timeStyle: 'short',
+          }),
+        }),
+      });
+    } catch (err) {
+      console.warn('Experience submission notification:', err);
+    } finally {
+      setIsSubmitting(false);
       setSubmissionSuccess(true);
+      // NOTE: We intentionally do NOT append to data.testimonials locally.
+      // Submissions are recorded in Formspree for the admin team to review and add manually.
       setTimeout(() => {
         setSubmissionSuccess(false);
         setShowSubmitModal(false);
         setNewTestimonial({
           author: '',
+          email: '',
+          phone: '',
           role: '',
           location: '',
           category: 'Practitioner',
           quote: '',
         });
-      }, 2000);
+      }, 3500);
     }
   };
 
@@ -122,7 +149,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
                     src={item.avatar}
                     alt={item.author}
                     referrerPolicy="no-referrer"
-                    className="w-10 h-10 rounded-full object-cover border border-stone-200"
+                    className={`w-12 h-12 rounded-full object-cover border border-stone-200 shadow-sm shrink-0 ${item.author === 'Max' || item.id === 'test-1' ? 'object-[63%_20%]' : item.author === 'Vinay Dev' || item.id === 'test-2' ? 'object-[center_28%]' : item.author.includes('Arun') || item.id === 'test-3' ? 'object-[center_30%]' : item.author.includes('Preeti') || item.id === 'test-4' ? 'object-[42%_22%]' : item.author.includes('Dhruv') || item.id === 'test-5' ? 'object-[51%_18%]' : 'object-center'}`}
                   />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center font-serif font-bold text-sm">
@@ -160,30 +187,59 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
             </div>
 
             {submissionSuccess ? (
-              <div className="text-center py-8 space-y-2">
-                <CheckCircle className="w-8 h-8 text-emerald-600 mx-auto" />
+              <div className="text-center py-8 space-y-3">
+                <div className="w-12 h-12 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
                 <h4 className="font-serif text-xl font-semibold text-stone-900">
-                  Dhanyavad for sharing your voice!
+                  Dhanyavad for sharing your experience! 🙏
                 </h4>
-                <p className="text-xs text-stone-600">Your reflection has been added to our community wall.</p>
+                <p className="text-xs text-stone-600 max-w-sm mx-auto leading-relaxed">
+                  Your reflection has been recorded successfully and forwarded to the foundation's administrative team. Once reviewed, it will be published to the community reflections wall.
+                </p>
+                <div className="pt-2">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSubmissionSuccess(false);
+                      setShowSubmitModal(false);
+                    }}
+                    className="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded-md text-xs font-medium cursor-pointer"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             ) : (
-              <form onSubmit={handleAddTestimonial} className="space-y-4 text-xs">
-                <div>
-                  <label className="block font-medium text-stone-700 mb-1">Your Full Name</label>
-                  <input
-                    type="text"
-                    required
-                    value={newTestimonial.author}
-                    onChange={(e) => setNewTestimonial({ ...newTestimonial, author: e.target.value })}
-                    placeholder="e.g. Liam Walker"
-                    className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm bg-white focus:outline-none focus:border-amber-800"
-                  />
+              <form onSubmit={handleSubmitTestimonial} className="space-y-4 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-medium text-stone-700 mb-1">Your Full Name <span className="text-rose-500">*</span></label>
+                    <input
+                      type="text"
+                      required
+                      value={newTestimonial.author}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, author: e.target.value })}
+                      placeholder="e.g. Liam Walker"
+                      className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm bg-white focus:outline-none focus:border-amber-800"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-medium text-stone-700 mb-1">Email Address <span className="text-rose-500">*</span></label>
+                    <input
+                      type="email"
+                      required
+                      value={newTestimonial.email}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, email: e.target.value })}
+                      placeholder="you@example.com"
+                      className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm bg-white focus:outline-none focus:border-amber-800"
+                    />
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div>
-                    <label className="block font-medium text-stone-700 mb-1">Role / Description</label>
+                    <label className="block font-medium text-stone-700 mb-1">Role / Tag</label>
                     <input
                       type="text"
                       value={newTestimonial.role}
@@ -198,7 +254,17 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
                       type="text"
                       value={newTestimonial.location}
                       onChange={(e) => setNewTestimonial({ ...newTestimonial, location: e.target.value })}
-                      placeholder="e.g. Sydney, Australia"
+                      placeholder="e.g. Mysuru, India"
+                      className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm bg-white focus:outline-none focus:border-amber-800"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-medium text-stone-700 mb-1">Phone (Optional)</label>
+                    <input
+                      type="tel"
+                      value={newTestimonial.phone}
+                      onChange={(e) => setNewTestimonial({ ...newTestimonial, phone: e.target.value })}
+                      placeholder="+91..."
                       className="w-full px-3 py-2 border border-stone-300 rounded-md text-sm bg-white focus:outline-none focus:border-amber-800"
                     />
                   </div>
@@ -218,7 +284,7 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
                 </div>
 
                 <div>
-                  <label className="block font-medium text-stone-700 mb-1">Your Reflection / Experience</label>
+                  <label className="block font-medium text-stone-700 mb-1">Your Reflection / Experience <span className="text-rose-500">*</span></label>
                   <textarea
                     rows={4}
                     required
@@ -233,15 +299,16 @@ export const TestimonialsPage: React.FC<TestimonialsPageProps> = ({ data }) => {
                   <button
                     type="button"
                     onClick={() => setShowSubmitModal(false)}
-                    className="px-4 py-2 border border-stone-300 text-stone-700 rounded-md text-xs font-medium hover:bg-stone-100"
+                    className="px-4 py-2 border border-stone-300 text-stone-700 rounded-md text-xs font-medium hover:bg-stone-100 cursor-pointer"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 bg-amber-900 hover:bg-amber-950 text-white rounded-md text-xs font-semibold uppercase tracking-wider"
+                    disabled={isSubmitting}
+                    className="px-5 py-2.5 bg-amber-900 hover:bg-amber-950 disabled:opacity-50 text-white rounded-md text-xs font-semibold uppercase tracking-wider cursor-pointer"
                   >
-                    Post Reflection
+                    {isSubmitting ? 'Recording Reflection...' : 'Submit Reflection'}
                   </button>
                 </div>
               </form>

@@ -484,7 +484,15 @@ export const HomePage: React.FC<HomePageProps> = ({
           )}
         </div>
 
-        <div className="text-sm">
+        <div className="flex flex-col items-center text-sm">
+          {currentTestimonial.avatar && (
+            <img
+              src={currentTestimonial.avatar}
+              alt={currentTestimonial.author}
+              referrerPolicy="no-referrer"
+              className={`w-14 h-14 rounded-full object-cover border-2 border-amber-200 shadow-sm mb-2.5 ${currentTestimonial.author === 'Max' || currentTestimonial.id === 'test-1' ? 'object-[63%_20%]' : currentTestimonial.author === 'Vinay Dev' || currentTestimonial.id === 'test-2' ? 'object-[center_28%]' : currentTestimonial.author.includes('Arun') || currentTestimonial.id === 'test-3' ? 'object-[center_30%]' : currentTestimonial.author.includes('Preeti') || currentTestimonial.id === 'test-4' ? 'object-[42%_22%]' : currentTestimonial.author.includes('Dhruv') || currentTestimonial.id === 'test-5' ? 'object-[51%_18%]' : 'object-center'}`}
+            />
+          )}
           <p className="font-semibold text-stone-900 text-base">{currentTestimonial.author}</p>
           <p className="text-xs text-stone-500 mt-0.5">{currentTestimonial.role} · {currentTestimonial.location}</p>
         </div>

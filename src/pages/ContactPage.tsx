@@ -125,16 +125,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({ data }) => {
       a: "Yes. The traditional Mysore style of Ashtanga Yoga is inherently personalized. Complete beginners are taught one-on-one at their own pace, starting with Surya Namaskar and foundational standing postures."
     },
     {
-      q: "What is the minimum duration for studying in Mysore?",
-      a: "To truly absorb the method and establish a personal practice rhythm, we recommend a minimum stay of 1 month. Shorter 1-2 week study permissions are considered on a case-by-case basis."
+      q: "What is the minimum duration for studying?",
+      a: "To properly learn, experience, and integrate the practice into daily life, we recommend a minimum stay of one month. Shorter stays of 1–2 weeks may be considered on a case-by-case basis, depending on the student’s needs and availability."
     },
     {
       q: "Are accommodations provided at the Shala?",
-      a: "The Shala is located in peaceful Gokulam 3rd Stage, Mysuru, which has numerous clean, serene guesthouses, homestays, and apartments within easy walking distance. We provide a vetted accommodation guide upon acceptance."
+      a: "Yes. Our Shala is located in the peaceful natural surroundings of Pavagada, Tumakuru District, Karnataka. Accommodation and meals are provided during the programme and course period, allowing students to focus on their yoga practice, meditation, and inner growth in a serene environment."
     },
     {
-      q: "How can I volunteer for the rural school and seva programs?",
-      a: "We welcome earnest volunteers! You can select 'Seva Volunteer Inquiry' in the contact form or submit your details directly on the Projects page. A minimum 2-week commitment is required for school visits."
+      q: "How can I volunteer for rural school and Seva programmes?",
+      a: "We welcome sincere volunteers who wish to serve society through yoga, education, and community service. You can select “Seva Volunteer Inquiry” in our contact form or submit your details through the Projects page on our website.\n\nA minimum commitment of 1–2 weeks is required for rural school visits and on-ground Seva programmes. Your time, skills, and dedication can help us create a meaningful impact in rural communities."
     }
   ];
 
@@ -173,14 +173,14 @@ export const ContactPage: React.FC<ContactPageProps> = ({ data }) => {
                       Physical Location (Pavagada Yoga Shala)
                     </span>
                     <a
-                      href={data.general.mysoreMapsUrl || "https://maps.app.goo.gl/zU76gdr351CCLkZR8"}
+                      href={data.general.mysoreMapsUrl || "https://www.google.com/maps/place/AYS+YOGA+Foundation/@14.1998058,77.3033227,18.5z/data=!4m6!3m5!1s0x3bb11b847fa87669:0x610da421437ee744!8m2!3d14.1997846!4d77.3038581!16s%2Fg%2F11z3lm782z?entry=ttu&g_ep=EgoyMDI2MTAyMC4wIKXMDSoASAFQAw%3D%3D"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group block mt-1 hover:text-amber-950 transition-colors"
                       title="Click to view Pavagada Yoga Shala on Google Maps"
                     >
                       <p className="font-medium text-stone-900 group-hover:text-amber-900 transition-colors">
-                        {data.general.location || "47, Hoshahalli, v, Palavalli, Pavagada, Karnataka 572136"}
+                        {data.general.location || "#47, Hosahalli (village), Palavalli (post), Pavagada (taluk), Tumkur (district), Karnataka, India - 572136"}
                       </p>
                       <div className="inline-flex items-center gap-1.5 mt-2 px-3 py-1 bg-amber-900 text-stone-50 group-hover:bg-amber-950 text-xs font-semibold rounded shadow-sm transition-all">
                         <Navigation className="w-3.5 h-3.5 text-amber-300" />
@@ -543,7 +543,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ data }) => {
                   {isOpen ? <ChevronUp className="w-5 h-5 text-amber-800 shrink-0" /> : <ChevronDown className="w-5 h-5 text-stone-400 shrink-0" />}
                 </button>
                 {isOpen && (
-                  <div className="px-6 pb-5 pt-1 text-stone-600 text-sm leading-relaxed border-t border-stone-100">
+                  <div className="px-6 pb-5 pt-2 text-stone-600 text-sm leading-relaxed border-t border-stone-100 whitespace-pre-line">
                     {faq.a}
                   </div>
                 )}
