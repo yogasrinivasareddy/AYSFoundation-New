@@ -16,7 +16,6 @@ import { TestimonialsPage } from './pages/TestimonialsPage';
 import { DonationsPage } from './pages/DonationsPage';
 import { ResourcesPage } from './pages/ResourcesPage';
 import { ContactPage } from './pages/ContactPage';
-import { Edit3 } from 'lucide-react';
 
 const LOCAL_STORAGE_KEY = 'ays_yoga_foundation_data_v40';
 
@@ -170,19 +169,7 @@ export default function App() {
         onNavigate={handleNavigate}
       />
 
-      {/* Subtle Floating Content & Media Customizer Button */}
-      <div className="fixed bottom-5 right-5 z-40">
-        <button
-          onClick={() => setIsEditorOpen(true)}
-          className="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider text-stone-800 bg-white/95 hover:bg-stone-100 border border-stone-300 rounded-full shadow-lg backdrop-blur-md transition-all cursor-pointer hover:shadow-xl"
-          title="Click to edit website text, replace pictures, or add video links"
-        >
-          <Edit3 className="w-3.5 h-3.5 text-amber-800" />
-          <span>Edit Content & Media</span>
-        </button>
-      </div>
-
-      {/* Live Content Customizer Modal */}
+      {/* Live Content Customizer Modal (Disabled/Hidden) */}
       <ContentEditorModal
         isOpen={isEditorOpen}
         onClose={() => setIsEditorOpen(false)}
