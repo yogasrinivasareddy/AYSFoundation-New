@@ -3,9 +3,9 @@ name: Build and deploy
 on:
   workflow_dispatch:
   push:
-    branches: 
-     - main
-     - firebase-hosting
+    branches:
+      - main
+      - firebase-hosting
 
 jobs:
   deploy:
